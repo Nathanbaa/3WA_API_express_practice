@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cars List</title>
+  </head>
+  <body>
+    <h1>Cars List :</h1>
+    <ul>
+      <% if (cars && cars.length > 0) { %> <% cars.forEach(car => { %>
+      <li>
+        <%= car.marque %> - <%= car.modele %> - <%= car.annee %> - <%=
+        car.couleur %>
+        <form
+          action="/cars/<%= car.id %>?_method=DELETE"
+          method="POST"
+          style="display: inline"
+        >
+          <button
+            type="submit"
+            style="
+              background-color: rgb(198, 86, 86);
+              border: none;
+              cursor: pointer;
+            "
+          >
+            Delete
+          </button>
+        </form>
+        <a
+          href="/updatecar/<%= car.id %>"
+          style="background-color: rgb(150, 147, 147)"
+          >Update</a
+        >
+      </li>
+      <% }) %> <% } else { %>
+      <li>No cars available</li>
+      <% } %>
+    </ul>
+  </body>
+</html>

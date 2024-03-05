@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Car</title>
+  </head>
+  <body>
+    <h1>Update Car</h1>
+    <form action="/cars/<%= car.id %>" method="POST">
+      <input type="hidden" name="_method" value="PUT" />
+      <input
+        type="text"
+        placeholder="Marque"
+        name="marque"
+        value="<%= car.marque %>"
+      />
+      <input
+        type="text"
+        placeholder="Modele"
+        name="modele"
+        value="<%= car.modele %>"
+      />
+      <input
+        type="text"
+        placeholder="Année"
+        name="annee"
+        value="<%= car.annee %>"
+      />
+      <input
+        type="text"
+        placeholder="Couleur"
+        name="couleur"
+        value="<%= car.couleur %>"
+      />
+      <input type="submit" value="Update Car" />
+    </form>
+  </body>
+</html>

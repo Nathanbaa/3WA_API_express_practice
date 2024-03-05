@@ -25,12 +25,16 @@ const cars = [
   },
 ];
 carsRouter.get("/cars", (req, res) => {
-  res.json(cars);
+  res.render("cars", { cars });
 });
 
 carsRouter.get("/cars/:id", (req, res) => {
   const car = cars.find((car) => car.id === parseInt(req.params.id));
   res.json(car);
+});
+
+carsRouter.get("/addcar", (req, res) => {
+  res.render("addCar");
 });
 
 carsRouter.post("/cars", (req, res) => {
@@ -43,7 +47,16 @@ carsRouter.post("/cars", (req, res) => {
   };
 
   cars.push(car);
-  res.status(201).json(car);
+  res.render("cars", { cars });
+});
+
+carsRouter.get("/updatecar/:id", (req, res) => {
+  let { id } = req.params;
+  const car = cars.find((car) => car.id === parseInt(id));
+  if (!car) {
+    return res.status(404).json({ message: "Car not found" });
+  }
+  res.render("updateCar", { car });
 });
 
 carsRouter.put("/cars/:id", (req, res) => {
@@ -62,6 +75,7 @@ carsRouter.delete("/cars/:id", (req, res) => {
   const carId = cars.indexOf(car);
   cars.splice(carId, 1);
   res.json("car has been deleted");
+  // res.render("cars");
 });
 
 export default carsRouter;
